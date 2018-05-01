@@ -26,5 +26,7 @@ randomY = myLCG(997,79,78,36,1000);
 inRangeY = abs(randomY*40);
 
 dataSet = [inRangeX inRangeY];
+figure
 scatter(dataSet(:,1),dataSet(:,2)); % visualize data
+title('People Distribution');
 end

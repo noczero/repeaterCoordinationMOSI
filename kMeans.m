@@ -39,8 +39,10 @@ listSSE             = [];
             % find same label in result
             condition = result(:, 3) == i;
             % calculate mean every cluster
-            finalCentroids(i,:) = nanmean(result(condition,1:2));
+            finalCentroids(i,:) = mean(result(condition,1:2),'omitnan');
             disp(finalCentroids)
+            % dbstop if naninf
+
         end
         
         % calculate SSE
@@ -56,5 +58,6 @@ listSSE             = [];
 
     end
     %plot(listSSE)
+
 end
 

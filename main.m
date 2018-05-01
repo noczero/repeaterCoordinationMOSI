@@ -8,11 +8,16 @@ dataSet = generatePeople();
 k = 20;
 startCentroids = generateCentroids(dataSet,k);
 % visualize Centroids
+figure
 scatter(startCentroids(:,1),startCentroids(:,2));
+title('Start Centroids');
+
+
 
 %% do kMeans
 [finalCentroids , result ] = kMeans(dataSet,startCentroids);
 % visualize
+figure 
 scatter(finalCentroids(:,1),finalCentroids(:,2),[],[1:k],'d');
 hold on;
 scatter(result(:,1), result(:,2),[],result(:,3),'filled');
@@ -23,7 +28,9 @@ filterResult = filterDistance(result,finalCentroids,5);
 notCovered = filterResult(:,3) == 9999;
 datNotCovered = filterResult(notCovered,1:3);
 hold on;
-visualisasi = scatter(datNotCovered(:,1), datNotCovered(:,2),[],'white', 'x');
+scatter(datNotCovered(:,1), datNotCovered(:,2),[],'white', 'x');
+%%hold on;
+%%viscircles(finalCentroids,5);
 
 %% accuracy
 accuracy = accuracyCovered(filterResult);
@@ -36,5 +43,6 @@ filename = ['Result/centroids_acc=' int2str(accuracy) '_k=' int2str(k) '.csv'];
 csvwrite(filename,saveData);
 
 %% save figure as picture
+visualisasi = title(['Repeater Coordination with k = ' num2str(k) ' Accuracy = '  num2str(accuracy)]);
 filenamePic = ['Result/visualisasi_acc=' int2str(accuracy) '_k=' int2str(k) '.jpg'];
 saveas(visualisasi,filenamePic);
