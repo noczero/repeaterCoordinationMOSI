@@ -40,11 +40,8 @@ listSSE             = [];
             condition = result(:, 3) == i;
             % calculate mean every cluster
             itsOwnData = result(condition,1:2);
-            [rowDat ~] = size(itsOwnData);
-            if(rowDat > 1)
-                finalCentroids(i,:) = mean(result(condition,1:2),'omitnan');
-            end
-            
+            [rowI
+            finalCentroids(i,:) = mean(result(condition,1:2),'omitnan');
             disp(finalCentroids)
             % dbstop if naninf
 
