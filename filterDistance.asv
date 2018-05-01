@@ -1,0 +1,41 @@
+function [ result ] = filterDistance( X , centroids, limitDist)
+%filterDistance is function to filter centroids in distance
+% X is result in label
+% centroids is the result of k-Means centroids
+% limitDist is the limit distance of centroids and its member
+
+[row col] = size(X);
+[rowK colK] = size(centroids);
+
+newResult = zeros(row,col);
+
+% iterate for all K class
+for i = 1:rowK
+    % find same label in result
+    condition = X(:, 3) == i;
+    % give list data on its class
+    dataOnItsClass = X(condition,1:2); 
+   % calculate distance between centroids and its member
+   [ rowFilter, colFilter] = size(dataOnItsClass);
+   % iterate for its data
+   for j = 1:rowFilter 
+     sub = dataOnItsClass(j,:) - centroids(i,:);
+     euclidean = sqrt(sum(sub.^2));
+    
+     if (euclidean <= 5)
+         newResult(j,1) = dataOnItsClass(j,1); % for x
+         newResult(j,2) = dataOnItsClass(j,2); % for y
+         newResult(j,3) = i; % for label
+     else
+         newResult(j,1) = dataOnItsClass(j,1); % for x
+         newResult(j,2) = dataOnItsClass(j,2); % for y
+         newResult(j,3) = 9999; % for false label
+     end
+   end
+   
+
+end
+
+
+end
+

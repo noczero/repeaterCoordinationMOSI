@@ -1,0 +1,25 @@
+clc;
+clear;
+%% Main Program
+% generate DataSet
+dataSet = generatePeople();
+
+%% generate Centroids
+k = 20;
+startCentroids = generateCentroids(dataSet,k);
+% visualize Centroids
+scatter(startCentroids(:,1),startCentroids(:,2));
+
+%% do kMeans
+[finalCentroids , result ] = kMeans(dataSet,startCentroids);
+scatter(finalCentroids(:,1),finalCentroids(:,2),[],[1:k],'*');
+hold on;
+scatter(result(:,1), result(:,2),[],result(:,3),'filled');
+
+%% limit for 5 miles
+filterResult = filterDistance(result,finalCentroids,5);
+% visualize
+scatter(filterResult(:,1),filterResult(:,2),[],result(:,3),'filled');
+notCovered = filterResult(:,3) == 9999;
+datNotCovered = filterResult(notCovered,1:3);
+scatter(datNotCovered(:,1), datNotCovered(:,2), 'x');
