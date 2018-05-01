@@ -3,7 +3,7 @@ function makeCircleOnCentroids(finalCentroids, radius)
 %% make circle on final centroids
 
 
-[rows cols] = size(finalCentroids)
+[rows cols] = size(finalCentroids);
 axis equal;
 for i = 1:rows
     hold on;

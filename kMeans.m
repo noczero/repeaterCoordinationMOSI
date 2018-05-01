@@ -51,7 +51,7 @@ listSSE             = [];
         end
         
         % calculate SSE
-        listSSE = [listSSE ; SSE( result , finalCentroids )];
+        %%listSSE = [listSSE ; SSE( result , finalCentroids )];
         
         % check centroids dont change
         if ((tempCentroids == finalCentroids))
