@@ -23,7 +23,7 @@ filterResult = filterDistance(result,finalCentroids,5);
 notCovered = filterResult(:,3) == 9999;
 datNotCovered = filterResult(notCovered,1:3);
 hold on;
-scatter(datNotCovered(:,1), datNotCovered(:,2), 'x');
+visualisasi = scatter(datNotCovered(:,1), datNotCovered(:,2),[],'white', 'x');
 
 %% accuracy
 accuracy = accuracyCovered(filterResult);
@@ -34,3 +34,7 @@ disp(accuracy)
 saveData = vertcat(finalCentroids);
 filename = ['Result/centroids_acc=' int2str(accuracy) '_k=' int2str(k) '.csv'];
 csvwrite(filename,saveData);
+
+%% save figure as picture
+filenamePic = ['Result/visualisasi_acc=' int2str(accuracy) '_k=' int2str(k) '.jpg'];
+saveas(visualisasi,filenamePic);
